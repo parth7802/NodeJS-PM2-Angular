@@ -1,0 +1,75 @@
+NodeJS
+
+mkdir -p /var/www/html/app
+mkdir -p /var/www/html/adminside
+vim /var/www/html/app/server.js
+    
+    const http = require('http');
+    const hostname = '192.168.74.128' (IP_ADDRESS);
+    const port = 3000 (PORT);
+    const server = http.createServer((req, res) => {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/plain');
+    res.end('This is the Main App!\n');
+    });
+    server.listen(port, hostname, () => {
+    console.log(`Server running at http://${hostname}:${port}/`);
+    });
+
+vim /var/www/html/adminside/server.js
+
+    const http = require('http');
+    const hostname = '192.168.74.128' (IP_ADDRESS);
+    const port = 3001 (PORT);
+    const server = http.createServer((req, res) => {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/plain');
+    res.end('This is the Admin Side!\n');
+    });
+    server.listen(port, hostname, () => {
+    console.log(`Server running at http://${hostname}:${port}/`);
+    });
+
+pm2 start /var/www/html/app/server.js
+pm2 start /var/www/html/adminside/server.js
+
+pm2 list [List all running process]
+pm2 monit [To monitor log process information]
+pm2 show 0 [To show single node process using ID]➢ pm2 stop all
+pm2 stop 1 [To stop all the processes] [To stop one process using ID]
+pm2 restart all [To restart all processes]
+pm2 restart 1 [To restart one process using ID]
+pm2 delete all [To delete all processes]
+pm2 delete 1 [To delete one process using ID]
+pm2 logs [To see logs of all processes]
+pm2 logs 0
+pm2 flush [To see log of one process using ID] [To flush all logs]
+pm2 startup
+pm2 unstartup [Enable pm2 to start at system boot] [Disable pm2 to starting at system boot]
+pm2 start /var/www/html/app/server.js -i 3 (instance)
+firewall-cmd --permanent --add-port=3000(PORT)/tcp
+firewall-cmd --permanent --add-port=3001(PORT)/tcp
+firewall-cmd –reload
+
+# Angular
+Installation of angular
+npm install -g @angular/cli@latest
+ng version
+
+[To check version of Angular]
+? Would you like to enable autocompletion? This will set up your terminal so pressing TAB while
+typing Angular CLI commands will show possible options and autocomplete arguments. (Enabling
+autocompletion will modify configuration files in your home directory.) Yes
+
+? Would you like to share pseudonymous usage data about this project with the Angular Team at
+Google under Google's Privacy Policy at https://policies.google.com/privacy. For more details and
+how to change this setting, see https://angular.io/analytics. No❖ Creation of new Angular application
+
+ng new angular-app
+
+? Would you like to add Angular routing? Yes
+? Which stylesheet format would you like to use? CSS
+
+Deploy Angular application
+cd angular-app
+ng server
