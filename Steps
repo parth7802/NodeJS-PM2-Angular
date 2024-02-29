@@ -1,4 +1,4 @@
-NodeJS
+# NodeJS
 
 mkdir -p /var/www/html/app
 mkdir -p /var/www/html/adminside
@@ -52,6 +52,7 @@ firewall-cmd --permanent --add-port=3001(PORT)/tcp
 firewall-cmd –reload
 
 # Angular
+
 Installation of angular
 npm install -g @angular/cli@latest
 ng version
